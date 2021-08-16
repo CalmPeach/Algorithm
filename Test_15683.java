@@ -82,7 +82,7 @@ public class Test_15683{
 				}	
 				break;
 			case 4:
-				// 네 방향을 감시
+				// 세 방향을 감시
 				for(int k = 0; k < 4; k++) {
 					for(int i = 0; i < n; i++) {
 						next[i] = Arrays.copyOf(prev[i], m);
@@ -94,6 +94,7 @@ public class Test_15683{
 				}	
 				break;
 			case 5:
+				// 네 방향을 감시
 				for(int i = 0; i < n; i++) {
 					next[i] = Arrays.copyOf(prev[i], m);
 				}
