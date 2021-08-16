@@ -5,7 +5,7 @@ public class Test_15683{
 	
 	static int n, m;
 	static int min;
-	static HashMap<Integer, Pair> cctvInfo;
+	static ArrayList<Pair> cctvInfo;
 	static int[] dr = {0, -1, 0, 1};
 	static int[] dc = {-1, 0, 1, 0};
 	
@@ -16,15 +16,13 @@ public class Test_15683{
 		m = Integer.parseInt(st.nextToken());
 		
 		int map[][] = new int[n][m];
-		cctvInfo = new HashMap<Integer, Pair>(); // cctv의 위치를 저장하는 HashMap
-		int key = 0;
+		cctvInfo = new ArrayList<Pair>(); // cctv의 위치를 저장하는 HashMap
 		for(int i = 0; i < n; i++) {
 			st = new StringTokenizer(br.readLine());
 			for(int j = 0; j < m; j++) {
 				map[i][j] = Integer.parseInt(st.nextToken());
 				if(map[i][j] != 0 && map[i][j] != 6) {
-					cctvInfo.put(key, new Pair(i, j));
-					key++;
+					cctvInfo.add(new Pair(i, j));
 				}
 			}
 		}
