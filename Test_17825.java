@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.*;
 
+// https://buddev.tistory.com/38
 public class Test_17825{
 	
 	static int dices[];
