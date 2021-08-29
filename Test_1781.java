@@ -20,8 +20,6 @@ public class Test_1781 {
 		
 		// 데드라인이 빠른 순으로 데드라인이 같다면 컵라면의 수가 많은 순으로 
 		Arrays.sort(problem, (o1, o2) -> {
-			if(o1[0] == o2[0])
-				return Integer.compare(o2[1], o1[1]);
 			return Integer.compare(o1[0], o2[0]);
 		});
 		
