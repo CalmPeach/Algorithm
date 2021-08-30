@@ -22,6 +22,7 @@ public class Test_2839 {
     	
     	if(maxValue == -1 && value % 3 != 0)
     		return -1;
+    	
     	return maxValue + value / 3;
     }
 }
