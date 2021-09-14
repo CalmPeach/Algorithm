@@ -28,7 +28,7 @@ public class Test_1149 {
 						dp[i][j] = Math.min(dp[i - 1][1], dp[i - 1][2]) + cost[i][j];
 						break;
 					case 1:
-						dp[i][j] = Math.mindp[i - 1][0], dp[i - 1][2]) + cost[i][j];
+						dp[i][j] = Math.min(dp[i - 1][0], dp[i - 1][2]) + cost[i][j];
 						break;
 					case 2:
 						dp[i][j] = Math.min(dp[i - 1][0], dp[i - 1][1]) + cost[i][j];
