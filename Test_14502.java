@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
@@ -8,6 +10,7 @@ public class Test_14502 {
 	static int N, M;
 	static int[][] map;
 	static int[][] dir = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}};
+	static ArrayList<Pair> virus;
 	
 	public static void main(String args[]) {
 		Scanner scan = new Scanner(System.in);
@@ -16,9 +19,12 @@ public class Test_14502 {
 		M = scan.nextInt();
 		
 		map = new int[N][M];
+		virus = new ArrayList<Pair>();
 		for(int i = 0; i < N; i++) {
 			for(int j = 0; j < M; j++) {
 				map[i][j] = scan.nextInt();
+				if(map[i][j] == 2)
+					virus.add(new Pair(i, j));
 			}
 		}
 		
@@ -31,12 +37,11 @@ public class Test_14502 {
 	static void combination(int[] bucket, int k) {
 		if(k == 0) { // 3개의 칸을 모두 뽑음
 			// bfs를 하기 위해 배열을 복사함
-			int[][] copy = new int[N][M];
+			int[][] copy = new int[N][];
 			for(int i = 0; i < N; i++) {
-				for(int j = 0; j < M; j++) {
-					copy[i][j] = map[i][j];
-				}
+				copy[i] = Arrays.copyOf(map[i], M);
 			}
+			
 			// 벽을 세움
 			for(int i = 0; i < bucket.length; i++) {
 				int r = bucket[i] / M;
@@ -72,12 +77,8 @@ public class Test_14502 {
 	// 바이러스 전파 메서드
 	static void bfs(int[][] copy) {
 		Queue<Pair> q = new LinkedList<Pair>();
-		for(int i = 0; i < N; i++) {
-			for(int j = 0; j < M; j++) {
-				if(copy[i][j] == 2){
-					q.add(new Pair(i, j));
-				}
-			}
+		for(int i = 0; i < virus.size(); i++) {
+			q.add(virus.get(i));
 		}
 		
 		while(!q.isEmpty()) {
