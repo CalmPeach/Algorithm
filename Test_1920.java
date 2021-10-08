@@ -1,53 +1,36 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.Arrays;
+import java.util.StringTokenizer;
 
-public class Test_1920{
-	
-	public static void main(String[] args) throws IOException {
+class Test_1920 {
+
+	public static void main(String args[]) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		int n = Integer.parseInt(st.nextToken());
-		int m = Integer.parseInt(st.nextToken());
-		
-		int[] memory = new int[n + 1];
-		int[] price = new int[n + 1];
+		StringTokenizer st = null;
+		int n = Integer.parseInt(br.readLine()); // n개의 점수
 		st = new StringTokenizer(br.readLine());
-		for(int i = 1; i <= n; i++) {
-			memory[i] = Integer.parseInt(st.nextToken());
+		int[] a = new int[n];
+		for(int i = 0; i < n; i++) {
+			a[i] = Integer.parseInt(st.nextToken());
 		}
-		
+		int m = Integer.parseInt(br.readLine());
 		st = new StringTokenizer(br.readLine());
-		int min = Integer.MAX_VALUE;
-		for(int i = 1; i <= n; i++) {
-			price[i] = Integer.parseInt(st.nextToken());
-			if(memory[i] >= m && min > price[i])
-				min = price[i];
+		int[] nums = new int[m];
+		for(int i = 0; i < m; i++) {
+			nums[i] = Integer.parseInt(st.nextToken());
 		}
 		
-		int[] dp = new int[m + 1];
-		Arrays.fill(dp, -1);
-		dp[0] = 0;
-		dp[m] = min == Integer.MAX_VALUE? -1: min;
-		
-		for(int i = 1; i <= n; i++) {
-			if(memory[i] >= m)
-				continue;
-			for(int j = m; j >= memory[i]; j--) {
-				if(dp[j] != -1 && j + memory[i] > m) {
-					if(dp[m] == -1 || dp[m] > dp[j] + price[i])
-						dp[m] = dp[j] + price[i];
-				}
-				
-				if(dp[j] != -1 && dp[j - memory[i]] != -1) {
-					dp[j] = Integer.min(dp[j], dp[j - memory[i]] + price[i]);
-				} else if(dp[j - memory[i]] != -1){
-					dp[j] = dp[j - memory[i]] + price[i];
-				}
-			}
+		Arrays.sort(a);
+		StringBuilder result = new StringBuilder();
+		for(int i = 0; i < m; i++) {
+			if(Arrays.binarySearch(a, nums[i]) >= 0)
+				result.append(1);
+			else
+				result.append(0);
+			result.append("\n");
 		}
-		
-		System.out.println(dp[m]);
+		System.out.println(result.toString());
 	}
 }
